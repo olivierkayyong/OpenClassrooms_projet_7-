@@ -32,7 +32,7 @@ et dont on peut voir un aperçu:
 <img src="dashboard.png">
 
 ### Api
-Le fichier api.py et api_processing contenus dans le dossier "dossier_code" est relatif au code permettant de déployer le modèle sous forme d'API qui est également hébergé sur le serveur cloud Heroku et accessible à cette adresse: 
+Le fichier api.py et api_processing contenus dans le dossier "dossier_code" sont relatifs aux codes permettant de déployer le modèle sous forme d'API qui est également hébergé sur le serveur cloud Heroku et accessible à cette adresse: 
 
 https://kay10api.herokuapp.com/docs  
 
