@@ -6,6 +6,7 @@ import dash_table
 from dash.dependencies import Input, Output
 import requests
 import plotly.graph_objs as go
+from csv import reader
 
 
 # Create the app object
@@ -16,20 +17,22 @@ server=app.server
 API_URL = 'https://kay10api.herokuapp.com/'
 
 # Dataframe index
-indexes = requests.get(url=API_URL+ "{predict}/{index}").json()
+indexes = requests.get(url=API_URL+ "get-Indexes").json()
 
 # Dataframe columns
-columns = requests.get(url=API_URL+ "{predict}/{index}/{columns}").json()
+columns = requests.get(url=API_URL+ "get-Columns").json()
+columns_2 = requests.get(url=API_URL+ "get-Columns2").json()
 
 # Loading test data
-df = pd.read_csv("test_data.csv")
-df.rename(columns={'Unnamed: 0': 'id_client'}, inplace=True)
-df_initial = pd.read_csv("initial_data.csv")
+vals = requests.get(url = API_URL + "get-TestData").json()
+df = pd.DataFrame( list(reader(vals)),columns=columns)
+vals_2 = requests.get(url = API_URL + "get-TestData2").json()
+df_2 = pd.DataFrame( list(reader(vals_2)),columns=columns_2)
 
 # Features importances globale
 def plot_feature_importances():
     """  Plot importances returned by a model."""
-    r = requests.get(url=API_URL+ "{predict}/{index}/{columns}/{local feature importance}/{customers neighbors}/{global feature importance}").json()
+    r = requests.get(url=API_URL+ "get-GlobalFeatureImportance").json()
     indices = r['indices']
     values = r['features']
     data = pd.DataFrame(values, columns=["values"], index=indices)
@@ -50,7 +53,7 @@ def plot_feature_importances():
 # Confusion matrix
 def plot_confusion_matrix():
     """  Plot of confusion matrix."""
-    r = requests.get(url=API_URL+ "{predict}/{index}/{columns}/{local feature importance}/{customers neighbors}/{global feature importance}/{confusion matrix}").json()
+    r = requests.get(url=API_URL+ "get-ConfusionMatrix").json()
     conf_mx = np.array(r)
     labels = ["Solvent", "Insolvent"]
     
@@ -217,8 +220,8 @@ app.layout = html.Div([
 def customer_solvency(id_client):
     """Plot probability of a customer's solvency as a pie plot"""
     
-    r = requests.get(url=API_URL+ "{predict}", params={"id_client": id_client})
-    json_data = r.json()['Customer score']
+    r = requests.get(url=API_URL+ "get-Score", params={"id_client": id_client})
+    json_data = r.json()['Predict_proba score']
     values = np.array(json_data)     
     return {
         'data': [go.Pie(labels=["Solvent", "Insolvent"],
@@ -238,7 +241,7 @@ def customer_solvency(id_client):
     ])
 def local_feature_importance(id_client) :
     """ Plot customer's local importance features"""
-    r = requests.get(url=API_URL+ "{predict}/{index}/{columns}/{local feature importance}", params={"id_client": id_client}).json()
+    r = requests.get(url=API_URL+ "get-LocalFeatureImportance", params={"id_client": id_client}).json()
     values = r['values']
     indices = r['indices']
     data = pd.DataFrame(values, columns=["values"], index=indices)
@@ -265,12 +268,10 @@ def local_feature_importance(id_client) :
          ])
 def similary_customers(id_client):
     """ Plot customer's similary neighbors """
-    r = requests.get(url=API_URL+ "{predict}/{index}/{columns}/{local feature importance}/{customers neighbors}", params={"id_client": id_client}).json()
-    indices_similary_clients = np.array(r)
-    dff = df.iloc[indices_similary_clients]
-    return dff.to_dict('records')
+    r = requests.get(url=API_URL+ "get-CustomersNeighbors", params={"id_client": id_client}).json()
+    return r
 
-# Updating bivariate analysis 
+# Updating bivariate analysis
 @app.callback(
     Output('indicator-graphic', 'figure'),
     [Input('xaxis-column', 'value'),
@@ -283,16 +284,14 @@ def bivariate_analysis(xaxis_column_name, yaxis_column_name,
      
     traces = []
     solvable_labels = ["Solvent", "Insolvent"]
-    for i, target in enumerate(df_initial.TARGET.unique()):
-        filtered_df = df_initial[df_initial['TARGET'] == target].reset_index()
+    for i, target in enumerate(df_2.TARGET.unique()):
+        filtered_df = df_2[df_2['TARGET'] == target].reset_index()
         traces.append(dict(
             x=filtered_df[xaxis_column_name],
             y=filtered_df[yaxis_column_name],
-            text=filtered_df['SK_ID_CURR'],
             mode='markers',
             opacity=0.7,
             marker={
-                'color':list(filtered_df["TARGET"].map({0.0: '#e74c3c', 1.0: "#2ecc71"}).values),
                 'size': 5,
                 'line': {'width': 0.15, 'color': 'white'}
             },
@@ -327,15 +326,13 @@ def univariate_analysis(xis_column_name,
        
     traces = []
     solvable_labels = ["Solvent", "Insolvent"]
-    for i, target in enumerate(df_initial.TARGET.unique()):
-        filtered_df = df_initial[df_initial['TARGET'] == target].reset_index()
+    for i, target in enumerate(df_2.TARGET.unique()):
+        filtered_df = df_2[df_2['TARGET'] == target].reset_index()
         traces.append(dict(
             x=filtered_df[xis_column_name],
-            text=filtered_df['SK_ID_CURR'],
             mode='markers',
             opacity=0.7,
             marker={
-                'color':list(filtered_df["TARGET"].map({0.0: '#e74c3c', 1.0: "#2ecc71"}).values),
                 'size': 5,
                 'line': {'width': 0.15, 'color': 'white'}
             },
