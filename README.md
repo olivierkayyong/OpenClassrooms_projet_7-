@@ -25,7 +25,9 @@ Le fichier P7_Processing&Modelling.ipynb contenu dans le dossier "dossier_code" 
 ### Dashboard
 Le fichier dashboard.py contenu dans le dossier "dossier_code" est relatif au code générant le dashboard lequel est hébergé sur le serveur cloud Heroku et accessible à cette adresse:
 
-https://kay10dashapp.herokuapp.com/  et l'ensemble des fichiers qui permis de le generer sont dispobibles à l'adresse: https://github.com/olivierkayyong/Dashboard
+https://kay10dashapp.herokuapp.com/  
+
+L'ensemble des fichiers qui permis de le générer sont dispobibles à l'adresse: https://github.com/olivierkayyong/Dashboard
   
 Dans l'image en dessous, on peut voir un aperçu du site:
   
@@ -34,7 +36,8 @@ Dans l'image en dessous, on peut voir un aperçu du site:
 ### Api
 Le fichier api.py et api_processing contenus dans le dossier "dossier_code" sont relatifs aux codes permettant de déployer le modèle sous forme d'API qui est également hébergé sur le serveur cloud Heroku et accessible à cette adresse: 
 
-https://kay10api.herokuapp.com/docs  et l'ensemble des fichiers qui permis de le generer sont dispobibles à l'adresse: https://github.com/olivierkayyong/Api
+https://kay10api.herokuapp.com/docs  
+L'ensemble des fichiers qui permis de le generer sont dispobibles à l'adresse: https://github.com/olivierkayyong/Api
 
 Dans l'image en dessous, on peut voir un aperçu du site:
   
