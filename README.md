@@ -8,6 +8,8 @@ Cette dernière souhaite mettre en œuvre un outil de “scoring crédit” rela
 L'objectif est de développer un modèle de scoring de la probabilité de défaut de paiement d'un client pour étayer la décision d'accorder ou non un prêt à un client potentiel.
 
 Tous les fichiers .csv sont téléchargeables à l'adresse suivante : https://www.kaggle.com/c/home-credit-default-risk/data".
+Une description des différentes tables:
+<img src="features.png">
 
 Le dossier "dossier_code" contient:
 - Un fichier P7_Processing&Modelling.ipynb contenant le code de la modélisation du prétraitement à la prédiction:
