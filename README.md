@@ -14,7 +14,7 @@ La description des différentes tables est la suivante:
 <img src="features.png">
 
 ### Modelisation
-Le fichier P7_Processing&Modelling.ipynb contenu dans le dossier "dossier_code" relatif au code de la modélisation du prétraitement à la prédiction:
+Le fichier P7_Processing&Modelling.ipynb contenu dans le dossier "dossier_code"  est relatif au code de la modélisation du prétraitement à la prédiction:
   - Choix du kernel
   - Traitement les valeurs abérrantes et manquantes
   - Exploration du jeu de données
@@ -23,7 +23,7 @@ Le fichier P7_Processing&Modelling.ipynb contenu dans le dossier "dossier_code" 
   - Analyse des feature importance globale et locale
  
 ### Dashboard
-Le fichier dashboard.py contenu dans le dossier "dossier_code" et relatif au code générant le dashboard lequel est hébergé sur le serveur cloud Heroku et accessible à cette adresse:
+Le fichier dashboard.py contenu dans le dossier "dossier_code" est relatif au code générant le dashboard lequel est hébergé sur le serveur cloud Heroku et accessible à cette adresse:
 
 https://kay10dashapp.herokuapp.com/  
   
@@ -32,7 +32,7 @@ et dont on peut voir un aperçu:
 <img src="dashboard.png">
 
 ### Api
-Le fichier api.py et api_processing contenus dans le dossier "dossier_code" relatif au code permettant de déployer le modèle sous forme d'API qui est également hébergé sur le serveur cloud Heroku et accessible à cette adresse: 
+Le fichier api.py et api_processing contenus dans le dossier "dossier_code" est relatif au code permettant de déployer le modèle sous forme d'API qui est également hébergé sur le serveur cloud Heroku et accessible à cette adresse: 
 
 https://kay10api.herokuapp.com/docs  
 
