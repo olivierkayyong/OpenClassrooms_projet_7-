@@ -41,7 +41,7 @@ et dont on peut aussi voir un aperçu:
 <img src="fastapi.png">
 
 ### Note méthodologique
-Le dossier note méthodologique décrivant quant à lui:
+Le dossier note méthodologique décrit quant à lui:
 - La méthodologie d'entraînement du modèle 
 - La fonction coût métier, l'algorithme d'optimisation et la métrique d'évaluation 
 - L’interprétabilité globale et locale du modèle
