@@ -25,8 +25,8 @@ Le dossier "dossier_code" contient:
   
 - Un fichier dashboard.py relatif au code générant le dashboard lequelest hébergé sur un serveur cloud Heroku accessible à cette adresse:
   https://kay10dashapp.herokuapp.com/ 
-  
   Dans l'image ne dessous un aperçu du site :
+  
   <img src="dashboard.png">
   
 - Un fichier API relatif au code permettant de déployer le modèle sous forme d'API.
