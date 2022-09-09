@@ -23,13 +23,15 @@ Le dossier "dossier_code" contient:
   - Choix du meilleur modèle et optimisation des hyper-paramètres d'un point de vue métier
   - Analyse des feature importance globale et locale
   
-- Un fichier dashboard.py relatif au code générant le dashboard lequelest hébergé sur un serveur cloud Heroku accessible à cette adresse:
-  https://kay10dashapp.herokuapp.com/ 
-  Dans l'image ne dessous un aperçu du site :
+- Un fichier dashboard.py relatif au code générant le dashboard lequel est hébergé sur le serveur cloud Heroku et accessible à cette adresse:
+  https://kay10dashapp.herokuapp.com/  et dont on peut voir un aperçu:
   
   <img src="dashboard.png">
   
-- Un fichier API relatif au code permettant de déployer le modèle sous forme d'API.
+- Un fichier api.py et api_processing relatif au code permettant de déployer le modèle sous forme d'API qui est également hébergé sur le serveur cloud Heroku 
+  et accessible à cette adresse: https://kay10api.herokuapp.com/docs  et dont on peut aussi voir un aperçu:
+  
+  <img src="fastapi.png">
 
 Le dossier note méthodologique décrivant quant à lui:
 - La méthodologie d'entraînement du modèle 
