@@ -49,4 +49,4 @@ Le dossier note méthodologique décrit quant à lui:
 - La fonction coût métier, l'algorithme d'optimisation et la métrique d'évaluation 
 - L’interprétabilité globale et locale du modèle
 - Les limites et les améliorations possibles 
-[https://github.com/olivierkayyong/OpenClassrooms_projet_7-](https://github.com/olivierkayyong/OpenClassrooms_projet_7-/tree/main/dossier_code)
+https://github.com/olivierkayyong/OpenClassrooms_projet_7-/tree/main/dossier_code
