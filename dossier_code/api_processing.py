@@ -30,6 +30,12 @@ def predict_proba(id_client):
 
 # Customer's prediction
 def predict(id_client):
+    """ Determination of client's prediction. 
+    Args:
+        id_client: customer identity   
+    Returns:
+        score: client's prediction
+    """
     score = predict_proba(id_client)
     prediction = score[0]
     if (prediction>0.5):
