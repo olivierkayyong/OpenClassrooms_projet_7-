@@ -16,19 +16,14 @@ def welcome():
 # Customer prediction
 @app.get('/predict')
 def customer_predict(id_client:int):
-    """ Customer creditworthiness prediction. 
-    Args:
-        id_client: customer identity   
-    Returns:
-        Prediction: the customer prediction
-        Customer score: predict_proba value
-    """
+    """ Customer creditworthiness prediction. """
     prediction = predict(id_client)      
     return {'Prediction': prediction}
 
 # Customer predict_proba_score
 @app.get('/get-Score')
 def score(id_client:int):
+    """ Customer creditworthiness prediction score """
     score = predict_proba(id_client) 
     return {'Predict_proba score': score.tolist() }
 
@@ -52,13 +47,7 @@ def columns():
 # Interpretability of the model:Local feature importance
 @app.get('/get-LocalFeatureImportance')
 def local_feature_importance(id_client:int):
-    """ Determination of local feature importance. 
-    Args:
-        id_client: customer identity   
-    Returns:
-        indices: local feature importance index
-        values: lime explainer values
-    """
+    """ Determination of local feature importance."""
     res = feature_importance_loc(id_client)
     return {'indices': res[0],
             "values": res[1]
@@ -67,23 +56,14 @@ def local_feature_importance(id_client:int):
 # Similary customers
 @app.get('/get-CustomersNeighbors')
 def similary_customers(id_client:int):
-    """ Determination of the similary customers with kneighbors. 
-    Args:
-        id_client: customer identity   
-    Returns:
-        indices: similary customers index
-    """
+    """ Determination of the similary customers with kneighbors."""
     res = nearest_neighbors(id_client)
     return res
 
 # Global feature importance
 @app.get('/get-GlobalFeatureImportance')
 def features_globale():
-    """ Determination of global feature importance.   
-    Returns:
-        indices: index of global feature importance
-        features: list of  global feature importance
-    """
+    """ Determination of global feature importance."""
     res = features_imp_globale()
     return {'indices': res[0].tolist(),
             "features": res[1]
