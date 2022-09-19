@@ -8,7 +8,7 @@ from sklearn.metrics import confusion_matrix
 
 # Loading data & Model
 data = pd.read_csv("x_data.csv")
-df_2 = pd.read_csv("x_data_2.csv")
+df_initial = pd.read_csv("x_data_2.csv")
 y_test = pd.read_csv("y_data.csv")
 pickle_in = open("lgbm.pkl", "rb")
 classifier = pickle.load(pickle_in)
@@ -30,12 +30,6 @@ def predict_proba(id_client):
 
 # Customer's prediction
 def predict(id_client):
-    """ Determination of client's prediction. 
-    Args:
-        id_client: customer identity   
-    Returns:
-        score: client's prediction
-    """
     score = predict_proba(id_client)
     prediction = score[0]
     if (prediction>0.5):
@@ -100,7 +94,7 @@ def conf_mat():
     return cf_matrix
 
 # Test data
-def test_data():
+def data_test():
     """Loading test data"""
     x = data.to_string(header=False,
                   index=False,
@@ -108,10 +102,10 @@ def test_data():
     vals = [','.join(ele.split()) for ele in x]
     return vals
 
-# Test data_2
-def test_data_2():
+# Initial data
+def data_initial():
     """Loading test data"""
-    x = df_2.to_string(header=False,
+    x = df_initial.to_string(header=False,
                   index=False,
                   index_names=False).split('\n')
     vals = [','.join(ele.split()) for ele in x]
