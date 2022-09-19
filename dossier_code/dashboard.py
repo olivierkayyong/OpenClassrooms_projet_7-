@@ -17,16 +17,16 @@ server=app.server
 API_URL = 'https://kay10api.herokuapp.com/'
 
 # Dataframe index
-indexes = requests.get(url=API_URL+ "get-Indexes").json()
+indexes = requests.get(url=API_URL+ "get-DataframeIndexes").json()
 
 # Dataframe columns
-columns = requests.get(url=API_URL+ "get-Columns").json()
-columns_2 = requests.get(url=API_URL+ "get-Columns2").json()
+columns = requests.get(url = API_URL + "get-TestDataframeColumns").json()
+columns_2 = requests.get(url = API_URL + "get-DataframeInitialColumns").json()
 
 # Loading test data
 vals = requests.get(url = API_URL + "get-TestData").json()
 df = pd.DataFrame( list(reader(vals)),columns=columns)
-vals_2 = requests.get(url = API_URL + "get-TestData2").json()
+vals_2 = requests.get(url = API_URL + "get-InitialData").json()
 df_2 = pd.DataFrame( list(reader(vals_2)),columns=columns_2)
 
 # Features importances globale
@@ -220,7 +220,7 @@ app.layout = html.Div([
 def customer_solvency(id_client):
     """Plot probability of a customer's solvency as a pie plot"""
     
-    r = requests.get(url=API_URL+ "get-Score", params={"id_client": id_client})
+    r = requests.get(url=API_URL+ "get-CustomerPredictionScore", params={"id_client": id_client})
     json_data = r.json()['Predict_proba score']
     values = np.array(json_data)     
     return {
